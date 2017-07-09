@@ -6,7 +6,7 @@ android {
     buildToolsVersion "26.0.0"
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
-        applicationId "com.psato.devfest"
+        applicationId "com.psato.foundation"
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
@@ -29,8 +29,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    apt 'com.google.dagger:dagger-compiler:2.5'
-    compile 'com.google.dagger:dagger:2.5'
+    apt 'com.google.dagger:dagger-compiler:2.11'
+    compile 'com.google.dagger:dagger:2.11'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:recyclerview-v7:25.3.1'
     compile 'com.android.support:support-core-utils:25.3.1'
