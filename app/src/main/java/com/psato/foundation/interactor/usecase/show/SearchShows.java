@@ -1,7 +1,7 @@
-package com.psato.devfest.interactor.usecase.show;
+package com.psato.foundation.interactor.usecase.show;
 
-import com.psato.devfest.data.repository.show.ShowRepository;
-import com.psato.devfest.interactor.usecase.UseCase;
+import com.psato.foundation.data.repository.show.ShowRepository;
+import com.psato.foundation.interactor.usecase.UseCase;
 
 import javax.inject.Inject;
 

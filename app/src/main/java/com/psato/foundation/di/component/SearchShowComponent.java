@@ -1,7 +1,7 @@
-package com.psato.devfest.di.component;
+package com.psato.foundation.di.component;
 
-import com.psato.devfest.di.LoaderScoped;
-import com.psato.devfest.presentation.showlist.ShowListVMLoader;
+import com.psato.foundation.di.LoaderScoped;
+import com.psato.foundation.presentation.showlist.ShowListVMLoader;
 
 import dagger.Component;
 

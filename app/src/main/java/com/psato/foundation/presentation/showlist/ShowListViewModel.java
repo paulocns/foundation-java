@@ -1,19 +1,18 @@
-package com.psato.devfest.presentation.showlist;
+package com.psato.foundation.presentation.showlist;
 
 import android.databinding.Bindable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
-import com.psato.devfest.BR;
-import com.psato.devfest.data.model.ShowInfo;
-import com.psato.devfest.interactor.rx.DefaultSubscriber;
-import com.psato.devfest.interactor.usecase.show.SearchShows;
-import com.psato.devfest.presentation.base.BaseViewModel;
+import com.psato.foundation.BR;
+import com.psato.foundation.data.model.ShowInfo;
+import com.psato.foundation.interactor.rx.DefaultSubscriber;
+import com.psato.foundation.interactor.usecase.show.SearchShows;
+import com.psato.foundation.presentation.base.BaseViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

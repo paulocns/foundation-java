@@ -1,10 +1,10 @@
-package com.psato.devfest.di.component;
+package com.psato.foundation.di.component;
 
-import com.psato.devfest.data.repository.show.ShowRepository;
-import com.psato.devfest.di.module.ApplicationModule;
-import com.psato.devfest.di.module.NetworkModule;
-import com.psato.devfest.di.module.ShowRepositoryModule;
-import com.psato.devfest.infrastructure.DevFestApplication;
+import com.psato.foundation.data.repository.show.ShowRepository;
+import com.psato.foundation.di.module.ApplicationModule;
+import com.psato.foundation.di.module.NetworkModule;
+import com.psato.foundation.di.module.ShowRepositoryModule;
+import com.psato.foundation.infrastructure.FoundationApplication;
 
 import javax.inject.Singleton;
 
@@ -23,7 +23,7 @@ import dagger.Component;
 public interface ApplicationComponent {
     // expose to sub graphs
 
-    DevFestApplication application();
+    FoundationApplication application();
 
     ShowRepository showRepository();
 }
