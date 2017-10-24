@@ -1,11 +1,13 @@
 package com.psato.foundation.data.remote;
 
+import com.psato.foundation.data.model.Show;
 import com.psato.foundation.data.model.ShowInfo;
 
 import java.util.List;
 
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -18,4 +20,9 @@ public interface TraktAPI {
             APIConstants.HEADER_CLIENT_ID + ": " + APIConstants.CLIENT_ID})
     @GET("search/show")
     Observable<List<ShowInfo>> searchForShows(@Query("query") String query, @Query("limit") int limit);
+
+    @Headers({APIConstants.HEADER_API_VERSION + ": 2",
+            APIConstants.HEADER_CLIENT_ID + ": " + APIConstants.CLIENT_ID})
+    @GET("shows/{id}")
+    Observable<Show> showSummary(@Path("id") String id, @Query("extended") String type);
 }

@@ -1,21 +1,20 @@
-package com.psato.foundation.presentation.showlist;
+package com.psato.foundation.presentation.summary;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.psato.foundation.R;
-import com.psato.foundation.databinding.FragmentShowListBinding;
+import com.psato.foundation.data.model.Show;
+import com.psato.foundation.databinding.FragmentSummaryBinding;
 import com.psato.foundation.infrastructure.Constants;
 import com.psato.foundation.infrastructure.FoundationApplication;
 import com.psato.foundation.presentation.base.BaseFragment;
-import com.psato.foundation.presentation.utils.DividerDecoration;
 
 import java.lang.ref.WeakReference;
 
@@ -23,23 +22,32 @@ import java.lang.ref.WeakReference;
  * Created by psato on 29/10/16.
  */
 
-public class ShowListFragment extends BaseFragment {
+public class SummaryFragment extends BaseFragment {
 
-    private FragmentShowListBinding mBinding;
+    private static final String SHOW = "SHOW";
+
+    public static SummaryFragment getNewInstance(Show show) {
+        SummaryFragment fragment = new SummaryFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(SHOW,show);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
+    private FragmentSummaryBinding mBinding;
+    private Show mShow;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_show_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_summary, container, false);
         mBinding = DataBindingUtil.bind(view);
-        mBinding.showListRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mBinding.showListRecyclerView.setAdapter(new ShowListAdapter());
-        mBinding.showListRecyclerView.addItemDecoration(new DividerDecoration.Builder(getContext()).build());
-        getLoaderManager().initLoader(Constants.LoaderID.SHOW_LIST_ID, new Bundle(), new LoaderCallBack(this));
+        mShow = (Show) getArguments().getSerializable(SHOW);
+        getLoaderManager().initLoader(Constants.LoaderID.SUMMARY_ID, new Bundle(), new LoaderCallBack(this));
         return view;
     }
 
-    private void bindViewModel(ShowListViewModel viewModel) {
+    private void bindViewModel(SummaryViewModel viewModel) {
         mBinding.setViewModel(viewModel);
         mBinding.executePendingBindings();
     }
@@ -52,27 +60,27 @@ public class ShowListFragment extends BaseFragment {
 
     private static class LoaderCallBack implements LoaderManager.LoaderCallbacks {
 
-        private WeakReference<ShowListFragment> mFragmentReference;
+        private WeakReference<SummaryFragment> mFragmentReference;
 
-        LoaderCallBack(ShowListFragment fragment) {
+        LoaderCallBack(SummaryFragment fragment) {
             mFragmentReference = new WeakReference<>(fragment);
         }
 
         @Override
         public Loader onCreateLoader(int id, Bundle args) {
-            ShowListFragment fragment = mFragmentReference.get();
+            SummaryFragment fragment = mFragmentReference.get();
             if (fragment != null) {
                 FoundationApplication app = (FoundationApplication) fragment.getActivity().getApplication();
-                return new ShowListVMLoader(fragment.getContext(), app.getApplicationComponent());
+                return new SummaryVMLoader(fragment.getContext(), app.getApplicationComponent(), fragment.mShow);
             }
             return null;
         }
 
         @Override
         public void onLoadFinished(Loader loader, Object data) {
-            ShowListFragment fragment = mFragmentReference.get();
+            SummaryFragment fragment = mFragmentReference.get();
             if (fragment != null) {
-                fragment.bindViewModel((ShowListViewModel) data);
+                fragment.bindViewModel((SummaryViewModel) data);
             }
         }
 

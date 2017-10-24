@@ -2,11 +2,13 @@ package com.psato.foundation.data.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by psato on 29/10/16.
  */
 
-public class ShowIds {
+public class ShowIds implements Serializable {
     @SerializedName("trakt")
     private String mTrakt;
     @SerializedName("slug")
@@ -20,4 +22,7 @@ public class ShowIds {
     @SerializedName("tvrage")
     private String mTvrage;
 
+    public String getTrakt() {
+        return mTrakt;
+    }
 }

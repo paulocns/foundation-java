@@ -8,5 +8,6 @@ public class Constants {
 
     public static final class LoaderID{
         public static final int SHOW_LIST_ID = 1;
+        public static final int SUMMARY_ID = 2;
     }
 }
